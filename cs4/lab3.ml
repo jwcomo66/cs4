@@ -59,7 +59,7 @@ let rectangle_perimeter {lowleft = a; upright = b} =
     2.0 *. (segment_length (rectangle_lower_segment {lowleft = a; upright= b})) +. 
     2.0 *. (segment_length (rectangle_left_segment {lowleft = a; upright= b}))
 
-let rectanlge_area {lowleft = a; upright = b} = 
+let rectangle_area {lowleft = a; upright = b} = 
     (segment_length (rectangle_lower_segment {lowleft = a; upright = b})) *. 
     (segment_length (rectangle_left_segment {lowleft = a; upright = b}))
 (* making type 2 *)
@@ -75,14 +75,14 @@ let rectangle_upper_segment2 {leftx = lx; rightx = rx; lowy = ly; highy = hy} =
 let rectangle_left_segment2 {leftx = lx; rightx = rx; lowy = ly; highy = hy} = 
     make_segment (make_point lx ly) (make_point lx hy)
 
-let rectangle_left_segment2 {leftx = lx; rightx = rx; lowy = ly; highy = hy} = 
+let rectangle_right_segment2 {leftx = lx; rightx = rx; lowy = ly; highy = hy} = 
     make_segment (make_point rx ly) (make_point rx hy)
 
 let rectangle_perimeter2 {leftx = lx; rightx = rx; lowy = ly; highy = hy} = 
     2.0 *. (segment_length (rectangle_lower_segment2 {leftx = lx; rightx = rx; lowy = ly; highy = hy})) +. 
     2.0 *. (segment_length (rectangle_left_segment2 {leftx = lx; rightx = rx; lowy = ly; highy = hy}))
 
-let rectanlge_area2 {leftx = lx; rightx = rx; lowy = ly; highy = hy} = 
+let rectangle_area2 {leftx = lx; rightx = rx; lowy = ly; highy = hy} = 
     (segment_length (rectangle_lower_segment2 {leftx = lx; rightx = rx; lowy = ly; highy = hy})) *. 
     (segment_length (rectangle_left_segment2 {leftx = lx; rightx = rx; lowy = ly; highy = hy}))
 
@@ -196,6 +196,14 @@ type nat = Zero | Succ of nat
 
 let zero' = Zero
 
+let is_zero' = function
+    | Zero -> true
+    | Succ _ -> false
+
+let succ' u = Succ u
+
+
+
 let prev' lst = 
     match lst with 
     | Zero -> invalid_arg "Cannot enter empty list"
@@ -215,6 +223,10 @@ let unary_to_integer' lst =
         then b 
         else helper lst (b + 1)
     in helper lst 0
+
+    
+let unary_add' n1 n2 = 
+    integer_to_unary' ((unary_to_integer') n1 + (unary_to_integer' n2))
 
 
 
