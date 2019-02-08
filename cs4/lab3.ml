@@ -1,3 +1,4 @@
+
 (* A.1 *)
 (* define new point type *)
 type point = 
@@ -158,6 +159,17 @@ let secondi a =
 
 (* A.5 *)
 
+
+let zero = []
+  
+let is_zero = function
+    | [] -> true
+    | () :: _ -> false
+  
+
+let succ u = () :: u
+
+
 let prev lst = 
     match lst with
     | [] -> invalid_arg "Cannot enter empty list"
@@ -179,15 +191,33 @@ let unary_add lst1 lst2 =
     lst1 @ lst2 
 
 
+
 type nat = Zero | Succ of nat
 
 let zero' = Zero
-(*
+
 let prev' lst = 
     match lst with 
     | Zero -> invalid_arg "Cannot enter empty list"
-    | _ Succ lst
-*)
+    | Succ a -> a
+
+
+
+let rec integer_to_unary' n = 
+    if n = 0
+    then Zero
+    else Succ (integer_to_unary (n - 1))
+
+
+let unary_to_integer' lst = 
+    let rec helper lst b = 
+        if (integer_to_unary b) = lst 
+        then b 
+        else helper lst (b + 1)
+    in helper lst 0
+
+
+
 (* Comment here *)
 (* A. 6 *)
 let zerof = fun s -> fun z -> z  
